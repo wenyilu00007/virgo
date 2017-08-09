@@ -1,4 +1,4 @@
-package com.hoau.virgo.virgo;
+package com.hoau.virgo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
