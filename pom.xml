@@ -54,6 +54,11 @@
 			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
 			<version>${consul.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.hoau.zodiac</groupId>
+			<artifactId>zodiac-core</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 		<!-- swagger2 -->
 		<dependency>
 			<groupId>io.springfox</groupId>

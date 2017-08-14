@@ -11,8 +11,7 @@ spring:
     config:
         enabled: false
     consul:
-      #host: localhost
-      host: 10.39.232.220
+      host: ${consul:127.0.0.1}
       port: 8500
       enabled: true
       config:
@@ -20,16 +19,21 @@ spring:
         format: YAML
         data-key: configuration
       discovery:
-        enabled: true  #是否注册到服务配置中心
-        #instanceId: ${spring.application.name}-${spring.cloud.consul.host}-${spring.cloud.consul.port}
-        serviecName: ${spring.application.name}
+        enabled: true  #服务注册与发现是否可用
+        register: true #是否注册服务,默认为 true
+        catalogServicesWatchDelay: 10 #consul 连接失败重试间隔
         health-check-interval: 30s
         healthCheckPath: /${spring.application.name}/health
-        preferIpAddress: true
+        fail-fast: true  #true 后，如果 consul 连不上，应用启动报错
+        serviecName: ${spring.application.name}
+        instance-id: ${spring.application.name}${spring.cloud.client.ipAddress}:${server.port}
+#        preferIpAddress: true #使用 IP 注册,true 则注册到服务中心地址为ip-address
+#        ip-address: ${ip:10.39.117.70}
+
 id:
   generate:
-    workId: ${workid}
-    datacenterId: ${datacenterid}
+    workId: ${workid:0}
+    datacenterId: ${datacenterid:0}
 
 virgo:
   swagger:

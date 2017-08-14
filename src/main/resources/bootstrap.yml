@@ -1,4 +1,4 @@
 spring:
   profiles:
-    active: dev   #默认是开发环境  test测试环境  prod 生产环境
-debug: true
+    active: dev
+debug: false
