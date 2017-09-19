@@ -1,12 +1,12 @@
 # 启动服务相关配置
 server:
   port: 8422
-  context-path: /virgo
+  context-path: /virgo-id
   tomcat:
     uri-encoding: UTF-8
 spring:
   application:
-    name: virgo
+    name: virgo-id
   cloud:
     config:
         enabled: false
@@ -28,7 +28,7 @@ spring:
         serviecName: ${spring.application.name}
         instance-id: ${spring.application.name}${spring.cloud.client.ipAddress}:${server.port}
         preferIpAddress: true #使用 IP 注册,true 则注册到服务中心地址为ip-address
-        ip-address: ${ip:10.39.117.70}
+        #ip-address: ${ip:10.39.117.70}
 
 id:
   generate:

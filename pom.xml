@@ -6,7 +6,10 @@
 	<groupId>com.hoau.virgo</groupId>
 	<artifactId>virgo</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <modules>
+        <module>virgo-id</module>
+    </modules>
+    <packaging>pom</packaging>
 
 	<name>virgo</name>
 	<description>virgo service for id generate</description>
