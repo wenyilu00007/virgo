@@ -1,9 +1,10 @@
 # 启动服务相关配置
 server:
   port: 8422
-  context-path: /virgo
+  context-path:
   tomcat:
     uri-encoding: UTF-8
+  context-path:
 spring:
   application:
     name: virgo-id
@@ -23,7 +24,7 @@ spring:
         register: true #是否注册服务,默认为 true
         catalogServicesWatchDelay: 10 #consul 连接失败重试间隔
         health-check-interval: 5s
-        healthCheckPath: /${spring.application.name}/generator/id
+        healthCheckPath: ${server.context-path}/generator/id
         fail-fast: true  #true 后，如果 consul 连不上，应用启动报错
         serviecName: ${spring.application.name}
         instance-id: ${spring.application.name}${spring.cloud.client.ipAddress}:${server.port}
@@ -34,12 +35,3 @@ id:
   generate:
     workId: ${workid:0}
     datacenterId: ${datacenterid:0}
-
-virgo:
-  swagger:
-    enable: true
-    title: ID生成服务目录
-    description: 微服务之 ID 生成服务，仅用于 ID 生成
-    version: 1.0
-    contactName: 供应链研发中心
-    path: /generator

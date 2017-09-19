@@ -1,6 +1,6 @@
-package com.hoau.virgo.controller;
+package com.hoau.virgo.id.controller;
 
-import com.hoau.virgo.genneration.SnowflakeIdWorker;
+import com.hoau.zodiac.core.util.id.SnowflakeIdWorker;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

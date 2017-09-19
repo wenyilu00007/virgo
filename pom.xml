@@ -31,6 +31,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.hoau.zodiac</groupId>
+			<artifactId>zodiac-springboot</artifactId>
+			<version>${zodiac.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
