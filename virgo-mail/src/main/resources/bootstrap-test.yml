@@ -22,4 +22,4 @@ spring:
         serviecName: ${spring.application.name}
         instance-id: ${spring.application.name}${spring.cloud.client.ipAddress}:${server.port}
         preferIpAddress: true #使用 IP 注册,true 则注册到服务中心地址为ip-address
-#        ip-address: ${ip:127.0.0.1}
+        ip-address: ${ip:127.0.0.1}
