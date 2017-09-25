@@ -4,7 +4,6 @@ server:
   context-path:
   tomcat:
     uri-encoding: UTF-8
-  context-path:
 spring:
   application:
     name: virgo-id
