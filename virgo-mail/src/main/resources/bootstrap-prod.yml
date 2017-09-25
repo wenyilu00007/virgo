@@ -1,17 +1,11 @@
-# 启动服务相关配置
-server:
-  port: 8422
-  context-path:
-  tomcat:
-    uri-encoding: UTF-8
 spring:
   application:
-    name: virgo-id
+    name: virgo-mail
   cloud:
     config:
         enabled: false
     consul:
-      host: ${consul:127.0.0.1}
+      host: ${consul:sctest.hoau.net}
       port: 8500
       enabled: true
       config:
@@ -22,17 +16,10 @@ spring:
         enabled: true  #服务注册与发现是否可用
         register: true #是否注册服务,默认为 true
         catalogServicesWatchDelay: 10 #consul 连接失败重试间隔
-        health-check-interval: 30s
+        health-check-interval: 5s
         healthCheckPath: ${server.context-path}/health
         fail-fast: true  #true 后，如果 consul 连不上，应用启动报错
         serviecName: ${spring.application.name}
         instance-id: ${spring.application.name}${spring.cloud.client.ipAddress}:${server.port}
         preferIpAddress: true #使用 IP 注册,true 则注册到服务中心地址为ip-address
         #ip-address: ${ip:127.0.0.1}
-id:
-  generate:
-    workId: ${workid:0}
-    datacenterId: ${datacenterid:0}
-zodiac:
-  message:
-    enable: false

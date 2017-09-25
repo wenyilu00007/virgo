@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoau.virgo.mail.dao.MailDao">
+
+    <!--邮件主信息resultmap-->
+    <resultMap id="mailResultMap" type="com.hoau.virgo.mail.shared.po.MailPO">
+        <id property="id" column="id" jdbcType="INTEGER" />
+        <result property="sendType" column="send_type" jdbcType="VARCHAR" />
+        <result property="sender" column="sender" jdbcType="VARCHAR" />
+        <result property="subject" column="subject" jdbcType="VARCHAR" />
+        <result property="receiver" column="receiver" jdbcType="VARCHAR" />
+        <result property="copyTo" column="copy_to" jdbcType="VARCHAR" />
+        <result property="blindCopyTo" column="blind_copy_to" jdbcType="VARCHAR" />
+        <result property="templateName" column="template_name" jdbcType="VARCHAR" />
+        <result property="templateData" column="template_data" jdbcType="VARCHAR" />
+        <result property="content" column="content" jdbcType="VARCHAR" />
+        <result property="containsAttachment" column="is_contains_attachment" jdbcType="VARCHAR" />
+        <result property="priority" column="priority" jdbcType="VARCHAR" />
+        <result property="requiredSendTime" column="required_send_time" jdbcType="VARCHAR" />
+        <result property="sendStatus" column="send_status" jdbcType="VARCHAR" />
+        <result property="sendTime" column="send_time" jdbcType="VARCHAR" />
+        <result property="failureReason" column="failure_reason" jdbcType="VARCHAR" />
+        <result property="failureTimes" column="failure_times" jdbcType="VARCHAR" />
+        <result property="active" column="is_active" jdbcType="VARCHAR" />
+        <result property="createTime" column="create_time" jdbcType="VARCHAR" />
+        <result property="createUserCode" column="create_user_code" jdbcType="VARCHAR" />
+        <result property="modifyTime" column="modify_time" jdbcType="VARCHAR" />
+        <result property="modifyUserCode" column="modify_user_code" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--获取需要发送的邮件-->
+    <select id="queryNeedSendMails" resultMap="mailResultMap" parameterType="com.hoau.virgo.mail.shared.po.MailQueryParams">
+        select id, send_type, sender, subject, receiver, copy_to, blind_copy_to, template_name, template_data, content,
+        is_contains_attachment, priority, required_send_time, send_status, failure_reason, failure_times, is_active,
+        create_time, create_user_code, modify_time, modify_user_code
+        from t_mail
+        where is_active = 1
+        and (
+        (send_status = 0
+        and required_send_time between #{requiredSendTimeStart, jdbcType=TIMESTAMP} and #{requiredSendTimeEnd, jdbcType=TIMESTAMP})
+        or
+        (send_status = 3
+        and required_send_time between date_sub(sysdate(), INTERVAL #{maxFailureDelayMinutes, jdbcType=INTEGER} MINUTE) and sysdate())
+        and failure_times &lt; #{maxFailureTimes, jdbcType=INTEGER}
+        )
+        limit 0, #{maxCount, jdbcType=INTEGER}
+    </select>
+
+    <!--批量更新邮件发送成功-->
+    <update id="updateSendSuccess">
+        update t_mail
+        set send_status = #{sendStatus, jdbcType=INTEGER},
+        send_time = #{sendTime, jdbcType=TIMESTAMP},
+        modify_time = #{modifyTime, jdbcType=TIMESTAMP},
+        modify_user_code = #{modifyUserCode, jdbcType=VARCHAR}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!--更新邮件发送失败-->
+    <update id="updateSendFailure" parameterType="com.hoau.virgo.mail.shared.po.MailPO">
+        update t_mail
+        set send_status = #{sendStatus, jdbcType=INTEGER},
+        failure_reason = #{failureReason, jdbcType=VARCHAR},
+        failure_times = #{failureTimes, jdbcType=INTEGER},
+        send_time = #{sendTime, jdbcType=TIMESTAMP},
+        modify_time = #{modifyTime, jdbcType=TIMESTAMP},
+        modify_user_code = #{modifyUserCode, jdbcType=VARCHAR}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+</mapper>

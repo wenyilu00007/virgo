@@ -12,9 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @ComponentScan(basePackages = "com.hoau.*")
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, SessionAutoConfiguration.class})
-public class VirgoApplication {
+public class VirgoGenerateIdApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VirgoApplication.class, args);
+		SpringApplication.run(VirgoGenerateIdApplication.class, args);
 	}
 }
