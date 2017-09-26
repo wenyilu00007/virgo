@@ -182,7 +182,7 @@ public class SenderMailService {
             mailLastSendTimeDao.updateByPrimaryKeySelective(update);
         }
         MailLastSendTimePO newLastTime = new MailLastSendTimePO();
-        newLastTime.setId(String.valueOf(idGenerator.nextId()));
+        newLastTime.setId(idGenerator.nextId());
         newLastTime.setLastExecTime(thisTime);
         newLastTime.setActive(ApplicationConstants.ACTIVE);
         newLastTime.setCreateTime(new Date());
@@ -245,7 +245,7 @@ public class SenderMailService {
                 int index = 0;
                 Map.Entry<String, String> entity = iterable.next();
                 MailAttachmentPO attachment = new MailAttachmentPO();
-                attachment.setId(String.valueOf(idGenerator.nextId()));
+                attachment.setId(idGenerator.nextId());
                 attachment.setMailId(mailPO.getId());
                 attachment.setAttachmentName(entity.getKey());
                 attachment.setAttachmentUrl(entity.getValue());
@@ -385,7 +385,7 @@ public class SenderMailService {
         mailPO.setPriority(dto.getPriority());
         mailPO.setRequiredSendTime(dto.getRequiredSendTime() == null ? new Date() : dto.getRequiredSendTime());
         mailPO.setSendStatus(sync ? Constants.SEND_STATUS_SENDING : Constants.SEND_STATUS_WAIT);
-        mailPO.setId(String.valueOf(idGenerator.nextId()));
+        mailPO.setId(idGenerator.nextId());
         mailPO.setActive(ApplicationConstants.ACTIVE);
         mailPO.setCreateTime(new Date());
         mailPO.setCreateUserCode(ApplicationConstants.SYSTEM_OPERATOR);
