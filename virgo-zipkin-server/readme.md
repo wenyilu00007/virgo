@@ -51,6 +51,8 @@ sleuth 默认会使用通道名称为 sleuth.sleuth 的 QUEUE 进行消息发送
 RabbitMQ 中 名称为 sleuth.sleuth 的 QUEUE中的消息，并存储在 elasticsearch 中。
 - 启动项目需要添加 elasticsearch 配置以及RabbitMQ 配置如下：需要注意的是，因为当前版本的配置
  bug 导致 elasticsearch.hosts只支持配置文件为 properties，不能为 yaml
+- sleuth 会在elasticsearch 创建默认index名称为 zipkin-datetime（zipkin-2017-10-05），删除索引可以使用
+curl -XDELETE 'http://10.39.232.127:9200/zipkin-*' 
 ```
 management.health.redis.enabled=false
 spring.cloud.consul.discovery.register=true
