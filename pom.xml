@@ -82,6 +82,7 @@
 
         <!--zipkinserver -->
         <dependency>
+            <!-- sleuth-zipkin-stream 包中已经包含该依赖，但 Dalston.SR2版本对应的不支持 es 5.x-->
             <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin</artifactId>
             <version>1.24.0</version>
