@@ -11,7 +11,7 @@ spring:
     config:
         enabled: false
     consul:
-      host: ${consul:127.0.0.1}
+      host: ${consul:sctest.hoau.net}
       port: 8500
       enabled: true
       config:

@@ -8,12 +8,12 @@ spring:
     config:
       enabled: false
     consul:
-      host: ${consul:10.39.232.220}
+      host: ${consul:sctest.hoau.net}
       port: 8500
       enabled: true
       config:
         enabled: true
-        format: yaml
+        format: properties
         data-key: configuration
       discovery:
         enabled: true  #服务注册与发现是否可用
@@ -26,4 +26,4 @@ spring:
         instance-id: ${spring.application.name}${spring.cloud.client.ipAddress}:${server.port}
         preferIpAddress: true
         #使用 IP 注册,true 则注册到服务中心地址为ip-address
-        #ip-address: ${ip:127.0.0.1}
+        ip-address: ${ip:127.0.0.1}
