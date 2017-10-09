@@ -73,7 +73,7 @@ public class ValidationDemo {
         System.out.println(System.currentTimeMillis()-begin);
 
 
-        //System.out.println(demo.validate("7999","^(3|8)[0-9]{3}"));
+        System.out.println(demo.validate("10041","(^1000[1-9]{1})|(^100[1-3]{1}[0-9]{1})|(^1004[0-1]{1})"));
 
     }
 }

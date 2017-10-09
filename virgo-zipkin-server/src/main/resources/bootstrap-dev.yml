@@ -1,22 +1,19 @@
-# 启动服务相关配置
 server:
-  port: 8422
+  port: 9422
   context-path:
-  tomcat:
-    uri-encoding: UTF-8
 spring:
   application:
-    name: virgo-id
+      name: virgo-zipkin
   cloud:
     config:
-        enabled: false
+      enabled: false
     consul:
-      host: ${consul:sctest.hoau.net}
+      host: ${consul:10.39.232.220}
       port: 8500
       enabled: true
       config:
         enabled: true
-        format: YAML
+        format: properties
         data-key: configuration
       discovery:
         enabled: true  #服务注册与发现是否可用
@@ -27,12 +24,7 @@ spring:
         fail-fast: true  #true 后，如果 consul 连不上，应用启动报错
         serviecName: ${spring.application.name}
         instance-id: ${spring.application.name}${spring.cloud.client.ipAddress}:${server.port}
-        preferIpAddress: true #使用 IP 注册,true 则注册到服务中心地址为ip-address
+        preferIpAddress: true
+        #使用 IP 注册,true 则注册到服务中心地址为ip-address
         #ip-address: ${ip:127.0.0.1}
-id:
-  generate:
-    workId: ${workid:0}
-    datacenterId: ${datacenterid:0}
-zodiac:
-  message:
-    enable: false
+
