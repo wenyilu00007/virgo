@@ -19,7 +19,7 @@ public class MailAttachmentPO extends BasicEntity {
     /**
      * 邮件主表ID
      */
-    private Long mailId;
+    private String mailId;
 
     /**
      * 附件名称
@@ -42,11 +42,11 @@ public class MailAttachmentPO extends BasicEntity {
     @Column(name = "is_active")
     private Integer active;
 
-    public Long getMailId() {
+    public String getMailId() {
         return mailId;
     }
 
-    public void setMailId(Long mailId) {
+    public void setMailId(String mailId) {
         this.mailId = mailId;
     }
 

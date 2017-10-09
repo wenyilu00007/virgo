@@ -9,7 +9,7 @@ package com.hoau.virgo.proxy;
 */
 public class Constants {
 
-    public static final String VIRGO_SERVICE_NAME = "virgo";
+    public static final String VIRGO_SERVICE_NAME = "virgo-id";
 
-    public static final String VIRGO_ID_GENERATOR_PATH = "/virgo/generator/id";
+    public static final String VIRGO_ID_GENERATOR_PATH = "/generator/id";
 }

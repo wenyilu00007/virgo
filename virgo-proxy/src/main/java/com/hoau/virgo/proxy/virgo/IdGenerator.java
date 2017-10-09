@@ -17,5 +17,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface IdGenerator {
 
     @RequestMapping(value = Constants.VIRGO_ID_GENERATOR_PATH, method = RequestMethod.GET)
-    long nextId();
+    String nextId();
 }

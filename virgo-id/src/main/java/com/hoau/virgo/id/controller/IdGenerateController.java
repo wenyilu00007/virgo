@@ -27,8 +27,8 @@ public class IdGenerateController {
 
     @ApiOperation(value = "获取主键", notes = "无需传入任何参数，产生全局唯一 ID，ID为类型为long，长度不定长")
     @GetMapping("/id")
-    public long idProvider() {
-        return snowflakeIdWorker.nextId();
+    public String idProvider() {
+        return String.valueOf(snowflakeIdWorker.nextId());
     }
 
 }
