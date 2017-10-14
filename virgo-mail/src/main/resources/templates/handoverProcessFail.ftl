@@ -6,7 +6,7 @@
     Fail Reason: ${reason}
 </h4>
 <h4>
-    Origin Handover:
+    Origin HandoverInfo:
 </h4>
 <p>
     ${originHandover}
