@@ -12,6 +12,8 @@
         <textarea>${requestData}</textarea>
         <p>响应报文：</p>
         <textarea>${responseData}</textarea>
+        <p>错误描述：</p>
+        <textarea>${errMsg}</textarea>
     </div>
 </body>
 </html>
