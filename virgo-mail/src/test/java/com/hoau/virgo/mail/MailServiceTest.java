@@ -2,7 +2,7 @@ package com.hoau.virgo.mail;
 
 import com.alibaba.fastjson.JSON;
 import com.hoau.virgo.mail.shared.Constants;
-import com.hoau.zodiac.core.entity.MailEntity;
+import com.hoau.zodiac.web.proxy.virgo.dto.MailEntity;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
