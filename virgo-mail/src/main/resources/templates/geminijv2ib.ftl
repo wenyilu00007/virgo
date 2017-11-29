@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <body>
     <h4>
-        预申报sku请求IB超时
+        预申报sku请求IB异常
     </h4>
     <div>
         <h5>请求sku：${sku}</h5>
