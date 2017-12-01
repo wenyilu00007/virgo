@@ -1,6 +1,6 @@
 spring:
   application:
-    name: virgo-mail
+    name: virgo-zipkin
   cloud:
     config:
       enabled: false
@@ -10,13 +10,13 @@ spring:
       enabled: true
       config:
         enabled: true
-        format: YAML
+        format: properties
         data-key: configuration
       discovery:
         enabled: true  #服务注册与发现是否可用
         register: true #是否注册服务,默认为 true
         catalogServicesWatchDelay: 10 #consul 连接失败重试间隔
-        health-check-interval: 5s
+        health-check-interval: 30s
         healthCheckPath: ${server.context-path}/health
         fail-fast: true  #true 后，如果 consul 连不上，应用启动报错
         serviecName: ${spring.application.name}
