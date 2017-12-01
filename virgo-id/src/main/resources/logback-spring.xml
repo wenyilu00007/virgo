@@ -109,32 +109,32 @@
 
     <!-- 香港生产环境. -->
     <springProfile name="hkprod">
-        <appender name="KafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
-            <encoder class="com.github.danielwegener.logback.kafka.encoding.LayoutKafkaMessageEncoder">
-                <layout class="ch.qos.logback.classic.PatternLayout" >
-                    <pattern>virgo-id-${CONSOLE_LOG_PATTERN}</pattern>
-                </layout>
-                <!--<layout class="net.logstash.logback.layout.LogstashLayout" >-->
-                <!--<includeContext>true</includeContext>-->
-                <!--<includeCallerData>true</includeCallerData>-->
-                <!--<customFields>{"system":"virgo-id"}</customFields>-->
-                <!--<fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames"/>-->
+        <!--<appender name="KafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">-->
+            <!--<encoder class="com.github.danielwegener.logback.kafka.encoding.LayoutKafkaMessageEncoder">-->
+                <!--<layout class="ch.qos.logback.classic.PatternLayout" >-->
+                    <!--<pattern>virgo-id-${CONSOLE_LOG_PATTERN}</pattern>-->
                 <!--</layout>-->
-                <charset>UTF-8</charset>
-            </encoder>
-            <!--kafka topic 需要与配置文件里面的topic一致-->
-            <topic>applog</topic>
-            <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy" />
-            <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
-            <!--<producerConfig>${bootstrap.servers}</producerConfig>-->
-            <producerConfig>bootstrap.servers=10.30.20.27:9092,10.30.20.28:9092,10.30.20.29:9092</producerConfig>
-            <!-- use gzip to compress each batch of log messages. valid values: none, gzip, snappy  -->
-            <producerConfig>compression.type=gzip</producerConfig>
-        </appender>
+                <!--&lt;!&ndash;<layout class="net.logstash.logback.layout.LogstashLayout" >&ndash;&gt;-->
+                <!--&lt;!&ndash;<includeContext>true</includeContext>&ndash;&gt;-->
+                <!--&lt;!&ndash;<includeCallerData>true</includeCallerData>&ndash;&gt;-->
+                <!--&lt;!&ndash;<customFields>{"system":"virgo-id"}</customFields>&ndash;&gt;-->
+                <!--&lt;!&ndash;<fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</layout>&ndash;&gt;-->
+                <!--<charset>UTF-8</charset>-->
+            <!--</encoder>-->
+            <!--&lt;!&ndash;kafka topic 需要与配置文件里面的topic一致&ndash;&gt;-->
+            <!--<topic>applog</topic>-->
+            <!--<keyingStrategy class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy" />-->
+            <!--<deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />-->
+            <!--&lt;!&ndash;<producerConfig>${bootstrap.servers}</producerConfig>&ndash;&gt;-->
+            <!--<producerConfig>bootstrap.servers=10.30.20.27:9092,10.30.20.28:9092,10.30.20.29:9092</producerConfig>-->
+            <!--&lt;!&ndash; use gzip to compress each batch of log messages. valid values: none, gzip, snappy  &ndash;&gt;-->
+            <!--<producerConfig>compression.type=gzip</producerConfig>-->
+        <!--</appender>-->
 
-        <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-            <appender-ref ref="KafkaAppender" />
-        </appender>
+        <!--<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">-->
+            <!--<appender-ref ref="KafkaAppender" />-->
+        <!--</appender>-->
 
         <!--输出到文件-->
         <property name="log.path" value="/opt/app/logs/virgo-id/logback.log" />
@@ -153,7 +153,7 @@
             <level value="INFO" />
             <appender-ref ref="CONSOLE" />
             <appender-ref ref="FILE" />
-            <appender-ref ref="ASYNC" />
+            <!--<appender-ref ref="ASYNC" />-->
         </root>
     </springProfile>
 </configuration>
