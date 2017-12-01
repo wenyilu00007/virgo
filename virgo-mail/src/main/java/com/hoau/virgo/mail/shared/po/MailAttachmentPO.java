@@ -36,11 +36,6 @@ public class MailAttachmentPO extends BasicEntity {
      */
     private String attachmentUrl;
 
-    /**
-     * 是否有效
-     */
-    @Column(name = "is_active")
-    private Integer active;
 
     public String getMailId() {
         return mailId;
@@ -74,11 +69,4 @@ public class MailAttachmentPO extends BasicEntity {
         this.attachmentUrl = attachmentUrl;
     }
 
-    public Integer getActive() {
-        return active;
-    }
-
-    public void setActive(Integer active) {
-        this.active = active;
-    }
 }

@@ -66,21 +66,3 @@ create index idx_mail_attachment_mail_id on t_mail_attachment
 (
   mail_id
 );
-
-
-/*==============================================================*/
-/* Table: t_mail_last_send_time                                 */
-/*==============================================================*/
-create table t_mail_last_send_time
-(
-  id                   bigint unsigned not null comment '主键',
-  last_exec_time       datetime not null comment '上次执行时间',
-  is_active            tinyint unsigned not null comment '是否有效，用于标识数据是否已被逻辑删除,1表示有效、未删除，0表示无效、已删除',
-  create_time          datetime not null comment '创建时间',
-  create_user_code     varchar(50) not null comment '创建人',
-  modify_time          datetime comment '修改时间',
-  modify_user_code     varchar(50) comment '修改人',
-  primary key (id)
-);
-
-alter table t_mail_last_send_time comment '邮件发送上次调度时间记录';

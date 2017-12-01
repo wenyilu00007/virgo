@@ -98,12 +98,6 @@ public class MailPO extends BasicEntity {
      */
     private Integer failureTimes;
 
-    /**
-     * 是否有效
-     */
-    @Column(name = "is_active")
-    private Integer active;
-
     public Integer getSendType() {
         return sendType;
     }
@@ -232,11 +226,4 @@ public class MailPO extends BasicEntity {
         this.failureTimes = failureTimes;
     }
 
-    public Integer getActive() {
-        return active;
-    }
-
-    public void setActive(Integer active) {
-        this.active = active;
-    }
 }

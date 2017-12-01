@@ -3,13 +3,11 @@ package com.hoau.virgo.mail.service;
 import com.alibaba.fastjson.JSON;
 import com.hoau.virgo.mail.dao.MailAttachmentDao;
 import com.hoau.virgo.mail.dao.MailDao;
-import com.hoau.virgo.mail.dao.MailLastSendTimeDao;
 import com.hoau.virgo.mail.shared.Constants;
 import com.hoau.virgo.mail.shared.domain.Mail;
 import com.hoau.virgo.mail.shared.domain.MailSendResult;
 import com.hoau.virgo.mail.shared.po.MailAttachmentPO;
 import com.hoau.virgo.mail.shared.po.MailPO;
-import com.hoau.virgo.mail.shared.po.MailLastSendTimePO;
 import com.hoau.virgo.mail.shared.po.MailQueryParams;
 import com.hoau.virgo.proxy.virgo.IdGenerator;
 import com.hoau.zodiac.core.constant.ApplicationConstants;
@@ -75,9 +73,6 @@ public class SenderMailService {
     private MailAttachmentDao mailAttachmentDao;
 
     @Autowired
-    private MailLastSendTimeDao mailLastSendTimeDao;
-
-    @Autowired
     private FtpUtils ftpUtils;
 
     /**
@@ -140,25 +135,11 @@ public class SenderMailService {
      * @date 2017年09月19日17:17:10
      */
     @Transactional
-    public void scheduleSendMail() {
-        //此次处理的数据截止时间点
-        Date thisTime = new Date();
-        //获取上次处理时间
-        Example example = new Example(MailLastSendTimePO.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andCondition("is_active = ", ApplicationConstants.ACTIVE);
-        example.setOrderByClause("create_time desc");
-        List<MailLastSendTimePO> times = mailLastSendTimeDao.selectByExample(example);
-        Date lastTime = null;
-        if (!CollectionUtils.isEmpty(times)) {
-            lastTime = times.get(0).getLastExecTime();
-        } else {
-            lastTime = new Date(0);
-        }
+    public void scheduleSendMail(Long lastSendTime, Long thisTime) {
         //获取从上次发送时间到本次处理截止时间点之间的需要发送的数据
         MailQueryParams queryParams = new MailQueryParams();
-        queryParams.setRequiredSendTimeStart(lastTime);
-        queryParams.setRequiredSendTimeEnd(thisTime);
+        queryParams.setRequiredSendTimeStart(new Date(lastSendTime == null ? 0 : lastSendTime));
+        queryParams.setRequiredSendTimeEnd(thisTime == null ? new Date() : new Date(thisTime));
         queryParams.setMaxCount(Constants.MAX_COUNT_PER_TIME);
         queryParams.setMaxFailureTimes(Constants.MAX_RETRY_TIMES);
         queryParams.setMaxFailureDelayMinutes(Constants.MAX_FAILURE_DELAY_MINUTES);
@@ -172,22 +153,6 @@ public class SenderMailService {
 //                service.submit(new SendMailThread(mailPOS.get(i)));
             }
         }
-        //设置最近发送时间
-        if (!CollectionUtils.isEmpty(times)) {
-            MailLastSendTimePO update = new MailLastSendTimePO();
-            update.setId(times.get(0).getId());
-            update.setActive(ApplicationConstants.INACTIVE);
-            update.setModifyTime(new Date());
-            update.setModifyUserCode(ApplicationConstants.SYSTEM_OPERATOR);
-            mailLastSendTimeDao.updateByPrimaryKeySelective(update);
-        }
-        MailLastSendTimePO newLastTime = new MailLastSendTimePO();
-        newLastTime.setId(idGenerator.nextId());
-        newLastTime.setLastExecTime(thisTime);
-        newLastTime.setActive(ApplicationConstants.ACTIVE);
-        newLastTime.setCreateTime(new Date());
-        newLastTime.setCreateUserCode(ApplicationConstants.SYSTEM_OPERATOR);
-        mailLastSendTimeDao.insert(newLastTime);
     }
 
     /**

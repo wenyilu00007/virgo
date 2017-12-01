@@ -6,7 +6,7 @@
     Fail Reason: ${reason}
 </h4>
 <h4>
-    Origin Order:
+    Origin Data:
 </h4>
 <p>
     ${originOrder}
