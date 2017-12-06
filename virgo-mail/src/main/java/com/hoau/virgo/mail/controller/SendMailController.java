@@ -69,7 +69,7 @@ public class SendMailController extends BasicController {
      * @date 2017年09月19日16:21:25
      */
     @ApiOperation(value = "定时任务触发的发送邮件", notes = "定时任务触发的发送邮件")
-    @PutMapping("/v1/mail/actions/send")
+    @RequestMapping(value = "/v1/mail/actions/send", method = RequestMethod.GET)
     Response scheduleSendMail(Long lastSendTime, Long thisTime) {
         senderMailService.scheduleSendMail(lastSendTime, thisTime);
         return returnSuccess();
