@@ -127,7 +127,7 @@
             <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy" />
             <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
             <!--<producerConfig>${bootstrap.servers}</producerConfig>-->
-            <producerConfig>bootstrap.servers=10.31.20.27:9092,10.31.20.28:9092,10.31.20.29:9092</producerConfig>
+            <producerConfig>bootstrap.servers=10.31.50.17:9092,10.31.50.18:9092,10.31.50.19:9092</producerConfig>
             <!-- use gzip to compress each batch of log messages. valid values: none, gzip, snappy  -->
             <producerConfig>compression.type=gzip</producerConfig>
         </appender>
