@@ -17,7 +17,7 @@ spring:
         register: true #是否注册服务,默认为 true
         catalogServicesWatchDelay: 10 #consul 连接失败重试间隔
         health-check-interval: 5s
-        healthCheckPath: ${server.context-path}/health
+        healthCheckPath: ${management.context-path}/health
         fail-fast: true  #true 后，如果 consul 连不上，应用启动报错
         serviecName: ${spring.application.name}
         instance-id: ${spring.application.name}${spring.cloud.client.ipAddress}:${server.port}
