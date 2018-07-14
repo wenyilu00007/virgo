@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.hoau.virgo</groupId>
+	<groupId>com.wyl.virgo</groupId>
 	<artifactId>virgo</artifactId>
 	<version>1.0-SNAPSHOT</version>
     <modules>
@@ -36,7 +36,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.hoau.zodiac</groupId>
+			<groupId>com.wyl.zodiac</groupId>
 			<artifactId>zodiac-springboot</artifactId>
 			<version>${zodiac.version}</version>
 		</dependency>
@@ -75,7 +75,7 @@
 			<version>${consul.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.hoau.zodiac</groupId>
+			<groupId>com.wyl.zodiac</groupId>
 			<artifactId>zodiac-core</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
